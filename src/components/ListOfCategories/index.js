@@ -13,6 +13,7 @@ export const ListOfCategories = () => {
     document.addEventListener('scroll', onScroll)
     return () => document.removeEventListener('scroll', onScroll)
   }, [])
+
   const renderList = (fixed) => {
     return (
       <List fixed={fixed}>
@@ -26,7 +27,7 @@ export const ListOfCategories = () => {
   }
   return (
     <>
-      {renderList()}
+      {loading ? <h5>cargando historias</h5> : renderList()}
       {showFixed && renderList(true)}
     </>
   )
