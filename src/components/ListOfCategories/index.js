@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Category } from '../Category'
 import { Item, List } from './styles'
+import { useCategoriesData } from '../../hooks/useCategoriesData'
 export const ListOfCategories = () => {
-  const [categories, setCategories] = useState([])
   const [showFixed, setShowFixed] = useState(false)
-  useEffect(() => {
-    window
-      .fetch('https://petgram-server-wlad.vercel.app/categories')
-      .then((res) => res.json())
-      .then((response) => {
-        setCategories(response)
-      })
-  }, [])
+  const { categories, loading } = useCategoriesData()
   useEffect(() => {
     const onScroll = (e) => {
       const newShowFixed = window.scrollY > 200
@@ -22,7 +15,7 @@ export const ListOfCategories = () => {
   }, [])
   const renderList = (fixed) => {
     return (
-      <List className={fixed ? 'fixed' : ''}>
+      <List fixed={fixed}>
         {categories.map((category) => (
           <Item key={category.id}>
             <Category {...category} />
