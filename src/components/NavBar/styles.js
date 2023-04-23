@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { Link as LinkRouter } from 'react-router-dom'
+import styled, { css } from 'styled-components'
+import { NavLink as LinkRouter } from 'react-router-dom'
 export const Nav = styled.nav`
   align-items: center;
   background: #fcfcfc;
@@ -18,13 +18,20 @@ export const Nav = styled.nav`
   z-index: 1000;
 `
 export const Link = styled(LinkRouter)`
-align-items: center;
-display: inline-flex;
-color: #888;
-height: 100%;
-justify-content: center;
-text-decoration: none;
-width: 100%;
-
-
+  align-items: center;
+  display: inline-flex;
+  color: #888;
+  height: 100%;
+  justify-content: center;
+  text-decoration: none;
+  width: 100%;
+  &.active {
+    color: black;
+    &::after{
+      content: '.';
+      position: absolute;
+      bottom: 0;
+      font-size: 34px;
+    }
+  }
 `
