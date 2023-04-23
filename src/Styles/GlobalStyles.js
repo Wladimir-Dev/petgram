@@ -23,7 +23,7 @@ body{
     background-color: #fefefe;
     height: 100vh;
     margin: 0 auto;
-    max-width: 500px;
+    max-width: 320px;
     overscroll-behavior: none;
     width: 100%;
 }
@@ -32,5 +32,6 @@ body{
     overflow-x: hidden;
     min-height: 100vh;
     padding-bottom: 10px;
+    width: 100%;
 }
 `

@@ -6,7 +6,7 @@ export const useCategoriesData = () => {
   useEffect(() => {
     setLoading(true)
     window
-      .fetch('https://petgram-server-wlad.vercel.app/categories')
+      .fetch('https://petgram-server-wladimir.vercel.app/categories')
       .then((res) => res.json())
       .then((response) => {
         setCategories(response)

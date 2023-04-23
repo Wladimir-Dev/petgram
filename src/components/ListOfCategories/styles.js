@@ -2,8 +2,9 @@ import styled, { css } from 'styled-components'
 
 export const List = styled.ul`
   display: flex;
-  overflow-x: auto;
+  overflow-x: scroll;
   width: 100%;
+  margin-bottom: 22px;
   list-style: none;
   ${(props) =>
     props.fixed &&

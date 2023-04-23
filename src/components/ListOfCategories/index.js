@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Category } from '../Category'
 import { Item, List } from './styles'
 import { useCategoriesData } from '../../hooks/useCategoriesData'
+
 export const ListOfCategories = () => {
   const [showFixed, setShowFixed] = useState(false)
   const { categories, loading } = useCategoriesData()
@@ -19,7 +20,7 @@ export const ListOfCategories = () => {
       <List fixed={fixed}>
         {categories.map((category) => (
           <Item key={category.id}>
-            <Category {...category} />
+            <Category {...category} path={`/pet/${category.id}`} />
           </Item>
         ))}
       </List>
