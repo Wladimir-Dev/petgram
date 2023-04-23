@@ -11,7 +11,10 @@ export const RegisterMutation = ({ activar }) => {
   const onSubmit = ({ email, password }) => {
     // const input = { email, password }
     signup({ variables: { input: { email, password } } })
-      .then(() => activar(true))
+      .then(({ data }) => {
+        const { signup } = data
+        activar(signup)
+      })
       .catch(error)
   }
 

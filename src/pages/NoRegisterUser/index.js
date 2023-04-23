@@ -4,13 +4,12 @@ import { RegisterMutation } from '../../components/container/RegisterMutation'
 import { LoginMutation } from '../../components/container/LoginMutation'
 
 export const NoRegisterUser = () => {
-  const { setIsAuth } = useContext(PetContext)
+  const { activador } = useContext(PetContext)
 
   return (
     <>
-      <RegisterMutation activar={setIsAuth} />
-      <LoginMutation activar={setIsAuth} />
-      {/* <UserForm onSubmit={setIsAuth} title='Iniciar Sesion' /> */}
+      <RegisterMutation activar={activador} />
+      <LoginMutation activar={activador} />
     </>
   )
 }

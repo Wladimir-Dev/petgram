@@ -3,20 +3,19 @@ import React from 'react'
 import { FavButton } from '../FavButton'
 
 const LIKE_PHOTO = gql`
-  mutation likeAnonymousPhoto($input: LikePhoto!) {
-    likeAnonymousPhoto(input: $input) {
+  mutation likePhoto($input: LikePhoto!) {
+    likePhoto(input: $input) {
       id,
       liked,
       likes
     }
   }
 `
-export const ToggleLikeMutation = ({ id, liked, likes, setLiked }) => {
+export const ToggleLikeMutation = ({ id, liked, likes }) => {
   const [likeAnonymousPhoto] = useMutation(LIKE_PHOTO)
 
   const handleFavClick = () => {
-    !liked && likeAnonymousPhoto({ variables: { input: { id } } })
-    setLiked(!liked)
+    likeAnonymousPhoto({ variables: { input: { id } } })
   }
   return <FavButton liked={liked} likes={likes} onClick={handleFavClick} />
 }
