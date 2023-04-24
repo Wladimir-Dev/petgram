@@ -1,19 +1,23 @@
 import { gql, useMutation } from '@apollo/client'
-import React from 'react'
+import React, { useContext } from 'react'
 import { UserForm } from '../UserForm'
+import { useNavigate } from 'react-router-dom'
+import { PetContext } from '../../Context/Context'
 const REGISTER = gql`
   mutation signup($input: UserCredentials!) {
     signup(input: $input)
   }
 `
-export const RegisterMutation = ({ activar }) => {
+export const RegisterMutation = () => {
+  const { activeAuth } = useContext(PetContext)
+  const navigate = useNavigate()
   const [signup, { error, loading }] = useMutation(REGISTER)
   const onSubmit = ({ email, password }) => {
-    // const input = { email, password }
     signup({ variables: { input: { email, password } } })
       .then(({ data }) => {
         const { signup } = data
-        activar(signup)
+        activeAuth(signup)
+        navigate('/')
       })
       .catch(error)
   }

@@ -5,12 +5,16 @@ export const PetProvider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(() => {
     return window.sessionStorage.getItem('token')
   })
-  const activador = (token) => {
+  const activeAuth = (token) => {
     setIsAuth(true)
     window.sessionStorage.setItem('token', token)
   }
+  const removeAuth = () => {
+    setIsAuth(false)
+    window.sessionStorage.removeItem('token')
+  }
   return (
-    <PetContext.Provider value={{ isAuth, activador }}>
+    <PetContext.Provider value={{ isAuth, activeAuth, removeAuth }}>
       {children}
     </PetContext.Provider>
   )

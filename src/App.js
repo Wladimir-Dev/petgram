@@ -7,8 +7,10 @@ import { Detail } from './pages/Details'
 import { NavBar } from './components/NavBar'
 import { Favs } from './pages/Favs'
 import { User } from './pages/User'
-import { NoRegisterUser } from './pages/NoRegisterUser'
 import { PetContext } from './Context/Context'
+import { NoFound } from './components/NoFound.js'
+import { RegisterMutation } from './components/container/RegisterMutation'
+import { LoginMutation } from './components/container/LoginMutation'
 
 export const App = () => {
   const { isAuth } = useContext(PetContext)
@@ -16,29 +18,23 @@ export const App = () => {
     <div>
       <BrowserRouter>
         <GlobalStyle />
-        <Logo />
-
-        {
-          isAuth ? (
-            <Routes>
-              <Route path='/favs' element={<Favs />} />
-              <Route path='/user' element={<User />} />
-            </Routes>
-          ) : (
-            <Routes>
-              <Route path='/user' element={<NoRegisterUser />} />
-              <Route path='/favs' element={<NoRegisterUser />} />
-            </Routes>
-          )
-        }
-
+        
         <Routes>
+          {!isAuth && <Route path='/' element={<LoginMutation />} />}
           <Route path='/' element={<Home />} />
           <Route path='/pet/:id' element={<Home />} />
           <Route path='/detail/:detailId' element={<Detail />} />
-          {/* <Route path='*' element={<h1>no found</h1>} /> */}
+          {!isAuth && <Route path='/login' element={<LoginMutation />} />}
+          {!isAuth && <Route path='/favs' element={<LoginMutation />} />}
+          {!isAuth && <Route path='/user' element={<LoginMutation />} />}
+          <Route path='/favs' element={<Favs />} />
+          <Route path='/user' element={<User />} />
+          <Route path='/registrar' element={<RegisterMutation />} />
+          <Route path='/login' element={<LoginMutation />} />
+          <Route path='*' element={<NoFound />} />
         </Routes>
-        <NavBar />
+
+        {isAuth && <NavBar />}
       </BrowserRouter>
     </div>
   )
